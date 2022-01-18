@@ -51,7 +51,11 @@ def data_load(process = 'Train', dataset = 'HCP', datapath = 'default'):
         h5f = h5py.File( datapath + 'BraTSHGG_data.hdf5', 'r')
         slice = h5f[process]
         label = h5f['Label']
-        return slice, label    
+        return slice, label
+    elif dataset == 'OASIS3':
+        h5f = hfpy.File( datapath + 'oasis-data.hdf5', 'r')
+        slice = h5f[process]
+        return slice
     else: raise ValueError('Error in dataset, should be CamCANT2, BraTSLGG and BraTSHGG')
 
 def roc_score2(pmask, ratio):
